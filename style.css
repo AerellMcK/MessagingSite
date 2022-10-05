@@ -1,0 +1,300 @@
+.default {
+    --hue: 255;
+    --saturation: 20%;
+    --background-main: hsl(var(--hue), var(--saturation), 15%);
+    --background-settings: hsl(var(--hue), var(--saturation), 10%);
+    --background-chats: hsl(var(--hue), var(--saturation), 12%);
+    --background-people: hsl(var(--hue), var(--saturation), 12%);
+    --background-input: hsl(var(--hue), var(--saturation), 20%);
+    --background-send: hsl(var(--hue), var(--saturation), 30%);
+    --main-font: Mukta;
+    --main-color: white;
+    --scroll-back: hsl(var(--hue), var(--saturation), 12%);
+    --scroll-bar: hsl(var(--hue), var(--saturation), 7%);
+}
+
+html,
+body {
+    background: var(--background-main);
+    color: white;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    font-family: var(--main-font);
+    color: var(--main-color);
+}
+
+a {
+    color: rgb(0, 175, 244)
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--scroll-back);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--background-main)
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-bar);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--background-main)
+}
+
+#main {
+    height: 100%;
+    width: 100%;
+    display: flex
+}
+
+.chatsDiv {
+    width: 20%;
+    height: 100%;
+    background: var(--background-chats);
+}
+
+.chatsDiv>* {
+    padding-left: 15px;
+}
+
+.messagesDiv ul li {
+    list-style: none;
+    padding-left: 58px;
+    padding-right: 58px;
+}
+
+.messagesDiv ul li:hover {
+    background-color: hsla(0, 0%, 100%, 5%);
+}
+
+.messagesDiv ul li:hover div.message-options {
+    display: inline-block;
+}
+
+.messagesDiv ul li div.message-options {
+    margin: -34px;
+    margin-right: -50px;
+    margin-bottom: 7px;
+    float: right;
+    display: none;
+}
+
+.messagesDiv ul li div.message-options button {
+    border: none;
+    border-radius: 5px;
+    background: var(--background-send);
+    cursor: pointer;
+}
+
+.messagesDiv ul li svg {
+    position: absolute;
+    left: 16px;
+    margin-top: calc(5px - .0625rem);
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+}
+
+.messagesDiv {
+    /* margin-left: 50px; */
+    width: 60%;
+    word-wrap: break-word;
+}
+
+.messagesDiv #messages {
+    padding: 0;
+    word-wrap: break-word;
+    position: relative;
+    height: 87%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    scrollbar-color: black;
+}
+
+.messagesDiv #submit {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+#messageDiv input#message {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: none;
+    background: none;
+    padding: 10px;
+    flex: 1;
+    outline: none
+}
+
+#messageDiv #send {
+    border: none;
+    background: none;
+    color: var(--background-send);
+}
+
+#messageDiv {
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+    margin: 8px;
+    margin-top: 12px;
+    height: 2.5em;
+    border-radius: 5px;
+    background-color: var(--background-input);
+    display: flex;
+}
+
+.peopleDiv {
+    width: 20%;
+    background: var(--background-people);
+}
+
+.peopleDiv>* {
+    padding-left: 15px;
+}
+
+h2 {
+    font-size: 0.75em;
+    margin: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+h2.side {
+    margin-left: -40px;
+    margin-bottom: -18px;
+}
+
+h2 span.message-author:hover {
+    text-decoration: underline;
+}
+
+.timestamp {
+    opacity: 0%;
+    font-size: 75%;
+    color: hsla(0, 0%, 100%, 50%);
+    word-wrap: none
+}
+
+.messagesDiv ul li:hover div h2 .timestamp {
+    opacity: 100%;
+}
+
+.message-content {
+    position: relative;
+    /* display: block; */
+    font-size: 0.75em;
+    line-height: 1em;
+    margin-bottom: 0.25em;
+    margin-top: 0.25em;
+}
+
+.profile {
+    margin-top: 0.125em;
+    overflow: hidden;
+}
+
+.timestamp-side {
+    opacity: 0%;
+    font-size: 9px;
+    color: hsla(0, 0%, 100%, 50%);
+    padding-left: -58px;
+    line-height: 0;
+}
+
+.messagesDiv ul li:hover div .timestamp-side {
+    opacity: 100%;
+}
+
+.settingsDiv {
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    height: 20%;
+    width: 20%;
+    background-color: var(--background-settings);
+    text-align: center;
+}
+
+.settingsDiv span {
+    font-size: 0.75em;
+}
+
+button,
+.inputButton {
+    border: none;
+    background: var(--background-input);
+    text-align: center;
+    border-radius: 5px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: var(--background-send);
+}
+
+.inputButton {
+    background-color: var(--background-send);
+    align-items: center;
+    display: flex;
+    font-size: 0.9rem;
+    padding: 8px;
+}
+
+h3 {
+    margin: 0;
+    margin-top: 5px;
+}
+
+input[type="color"] {
+    position: relative;
+    border: none;
+    border-radius: 5px;
+    height: 1.8em;
+    width: 1.5em;
+    background: none;
+    padding: 0;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.imageDiv {
+    width: 175px;
+    margin-top: 3px;
+}
+
+.attachment {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.imagesDiv {
+    width: 125px;
+}
+
+.imagePreview {
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+}
+
+.imagePreview:hover {
+    opacity: 0.75;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Messaging Site Thing</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/e1af60249d.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="default">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <div id="main">
+        <div class="chatsDiv">
+            <h1>My Chats</h1>
+            <ul id="chats"></ul>
+            <div class="settingsDiv">
+                <h3>Settings</h3>
+                <form onsubmit="return updateSettings(this)">
+                    <span>Icon Color</span><input type="color" id="iconColor"><br>
+                    <span>Name Color</span><input type="color" id="nameColor"><br>
+                    <button id="settings" type="submit">Update</button>
+                </form>
+            </div>
+        </div>
+        <div class="messagesDiv">
+            <ul id="messages">
+                <li id='message-udshbgyfusgeyfues'>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#400080" viewBox="0 0 8 8">
+                            <circle cx="4" cy="4" r="4"/>
+                        </svg>
+                        <h2>
+                            <span>OneMinesraft2</span>
+                        </h2>
+                        <div class="message-content">Hello there</div>
+                    </div>
+                    <div class="message-options">
+                        <button style="color: red" id="delete" data-id='udshbgyfusgeyfues' onclick='deleteMessage(this);'>Delete</button>
+                    </div>
+                </li>
+            </ul>
+            <form id="submit" onsubmit="return sendMessage(this);">
+                <div id="messageDiv">
+                    <label class="inputButton">
+                        <input type="file" name="upload" accept="image/*" id="upload" multiple />
+                        Upload
+                    </label>
+                    <input id="message" placeholder="Message #main" autocomplete="off">
+                    <button id="send" type="submit">Send</button>
+                </div>
+                <!-- <input type="submit"> -->
+            </form>
+        </div>
+        <div class="peopleDiv">
+            <h1>Images</h1>
+            <!-- <ul id="people"></ul> -->
+            <div class="imagesDiv"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
