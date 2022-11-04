@@ -298,3 +298,35 @@ input[type="file"] {
 .imagePreview:hover {
     opacity: 0.75;
 }
+
+.topbar {
+    display: none;
+}
+
+@media screen and (max-width: 450px) {
+  .timestamp {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 705px) {
+  .chatsDiv, .peopleDiv {
+    display: none;
+  }
+  .messagesDiv {
+      width: 100%;
+  }
+  .topbar {
+      display: flex;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--background-settings);
+      z-index: 5;
+      padding: 5px;
+      justify-content: center;
+  }
+  .topbar > input {
+      margin-inline: 20px;
+  }
+}
