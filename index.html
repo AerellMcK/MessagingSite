@@ -15,16 +15,17 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <div id="main">
+        <div class="topbar">
+            <span>Icon Color</span><input type="color" id="iconColor" class="setting">
+            <span>Name Color</span><input type="color" id="nameColor" class="setting">
+        </div>
         <div class="chatsDiv">
             <h1>My Chats</h1>
             <ul id="chats"></ul>
             <div class="settingsDiv">
                 <h3>Settings</h3>
-                <form onsubmit="return updateSettings(this)">
-                    <span>Icon Color</span><input type="color" id="iconColor"><br>
-                    <span>Name Color</span><input type="color" id="nameColor"><br>
-                    <button id="settings" type="submit">Update</button>
-                </form>
+                <span>Icon Color</span><input type="color" id="iconColor" class="setting"><br>
+                <span>Name Color</span><input type="color" id="nameColor" class="setting">
             </div>
         </div>
         <div class="messagesDiv">
@@ -35,9 +36,9 @@
                             <circle cx="4" cy="4" r="4"/>
                         </svg>
                         <h2>
-                            <span>OneMinesraft2</span>
+                            <span>Hi</span>
                         </h2>
-                        <div class="message-content">Hello there</div>
+                        <div class="message-content">Loading messages or smth</div>
                     </div>
                     <div class="message-options">
                         <button style="color: red" id="delete" data-id='udshbgyfusgeyfues' onclick='deleteMessage(this);'>Delete</button>
@@ -46,10 +47,10 @@
             </ul>
             <form id="submit" onsubmit="return sendMessage(this);">
                 <div id="messageDiv">
-                    <label class="inputButton">
+                    <!--<label class="inputButton">
                         <input type="file" name="upload" accept="image/*" id="upload" multiple />
                         Upload
-                    </label>
+                    </label>-->
                     <input id="message" placeholder="Message #main" autocomplete="off">
                     <button id="send" type="submit">Send</button>
                 </div>
@@ -62,7 +63,7 @@
             <div class="imagesDiv"></div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
