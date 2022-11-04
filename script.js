@@ -14,7 +14,10 @@ var Settings = JSON.parse(localStorage.getItem("settings"));
 // document.querySelector('#nameColor').value = Settings.nameColor;
 for (let setting of Array.from(document.querySelectorAll(".setting"))) {
     setting.value = Settings[setting.id];
-    setting.addEventListener('change', () => setSetting(setting.id, setting.value))
+    setting.addEventListener('change', () => {
+        setSetting(setting.id, setting.value);
+        setting.value = Settings[setting.id];
+    })
 }
 
 const firebaseConfig = {
