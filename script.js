@@ -10,8 +10,12 @@ if (!localStorage.getItem('settings') || error) {
 delete error;
 
 var Settings = JSON.parse(localStorage.getItem("settings"));
-document.querySelector('#iconColor').value = Settings.iconColor;
-document.querySelector('#nameColor').value = Settings.nameColor;
+// document.querySelector('#iconColor').value = Settings.iconColor;
+// document.querySelector('#nameColor').value = Settings.nameColor;
+for (let setting of Array.from(document.querySelectorAll(".setting"))) {
+    setting.value = Settings[setting.id];
+    setting.addEventListener('change', () => setSetting(setting.id, setting.value))
+}
 
 const firebaseConfig = {
     apiKey: "AIzaSyAeNhzM5tgd1tvjS8l-wHuHTahHBRS_QeI",
@@ -54,9 +58,6 @@ function deleteMessage(self) {
     return false;
 };
 
-for (let setting of Array.from(document.querySelectorAll(".setting"))) {
-    setting.addEventListener('change', () => setSetting(setting.id, setting.value))
-}
 
 messagesRef.on("child_added", (s) => {
     var message = parseMessage(s.val().message);
@@ -130,27 +131,6 @@ messagesRef.on("child_changed", s => {
 });
 
 addEventListener('keypress', () => document.querySelector('#message').focus());
-var uploadButton = document.querySelector('#upload');
-uploadButton.addEventListener('change', function () {
-    var files = Array.from(this.files).filter(file => isImage(file.name, false));
-    console.log(files)
-    files.forEach(file => {
-        const reader = new FileReader();
-        reader.onload = () => {
-            var src = reader.result;
-            images.push(reader.result);
-            var img = new Image();
-            img.src = src;
-            img.classList.add("imagePreview");
-            img.onclick = function() {
-                images = images.filter(file => file !== src);
-                img.remove();
-            }
-            document.querySelector('.imagesDiv').append(img);
-        };
-        reader.readAsDataURL(file);
-    });
-})
 
 function parseMessage(message) {
     return HtmlEncode(message)
