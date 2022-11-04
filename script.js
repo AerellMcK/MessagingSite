@@ -54,6 +54,10 @@ function deleteMessage(self) {
     return false;
 };
 
+for (let setting of Array.from(document.querySelectorAll(".setting"))) {
+    setting.addEventListener('change', () => setSetting(setting.id, setting.value))
+}
+
 messagesRef.on("child_added", (s) => {
     var message = parseMessage(s.val().message);
     var { attachments } = s.val();
@@ -62,6 +66,33 @@ messagesRef.on("child_added", (s) => {
         || (prevMessage && Math.abs(parseInt(prevMessage.querySelector("span[class*='timestamp']").getAttribute('data-timestamp')) - s.val().timestamp) > 1000 * 60 * 20)
         || (Array.from(document.querySelector('#messages').children)[0]
             && Math.abs(parseInt(prevMessage.querySelector("span[class*='timestamp']").getAttribute('data-timestamp')) - s.val().timestamp) > 1000 * 60 * 5);
+    // const newMessage = document.createElement("li");
+    // newMessage.id = `message-${s.key}`;
+    // const messageContent = document.createElement("div");
+    // newMessage.appendChild(messageContent);
+    // if (addProfile) {
+    //     const messageProfile = document.createElement("div");
+    //     newMessage.appendChild(messageProfile);
+    //     messageProfile.classList.add("message-profile");
+    //     const svg = document.createElement("svg");
+    //     messageProfile.appendChild(svg);
+    //     svg.setAttribute("xmlns", "https://www.w3.org/2000/svg");
+    //     svg.setAttribute("fill", s.val().iconColor || "#404040");
+    //     svg.setAttribute("viewBox", "0 0 8 8");
+    //     svg.innerHTML = `<circle cx="4" cy="4" r="4" />`;
+    //     const name = document.createElement("h2");
+    //     messageProfile.appendChild(name);
+    //     const messageAuthor = document.createElement("span");
+    //     name.appendChild(messageAuthor);
+    //     messageAuthor.classList.add("message-author");
+    //     messageAuthor.style.color = s.val().iconColor || "white";
+    //     messageAuthor.innerHTML = s.val().sender;
+    //     const timestamp = document.createElement("span");
+    //     name.appendChild(timestamp);
+    //     timestamp.dataset.timestamp = s.val().timestamp;
+    //     timestamp.classList.add("timestamp");
+    //     timestamp.innerHTML = parseDate(s.val().timestamp || 0);
+    // }
     var html = (`<li id='message-${s.key}'>
     <div>${addProfile ? `
         <div class="message-profile">
@@ -88,7 +119,6 @@ messagesRef.on("child_added", (s) => {
         <button style="color: red" id="delete" data-id='${s.key}' onclick='deleteMessage(this);'>Delete</button>
         </div>` : ''}
 </li>`)
-    //var html = (`<li id='message-${s.key}'>${s.val().sender == myName ? "<button data-id='" + s.key + "' onclick='deleteMessage(this);'>Delete</button> " : ''}${s.val().sender}: ${message}</li>`);
     if (prevMessage && prevMessage.querySelector("span[class*='timestamp']").getAttribute('data-timestamp') > s.val().timestamp) document.querySelector('#messages').innerHTML = document.querySelector('#messages').innerHTML + html;
     else document.querySelector('#messages').innerHTML = html + document.querySelector('#messages').innerHTML;
 });
@@ -102,7 +132,7 @@ messagesRef.on("child_changed", s => {
 addEventListener('keypress', () => document.querySelector('#message').focus());
 var uploadButton = document.querySelector('#upload');
 uploadButton.addEventListener('change', function () {
-    var files = [...this.files].filter(file => isImage(file.name, false));
+    var files = Array.from(this.files).filter(file => isImage(file.name, false));
     console.log(files)
     files.forEach(file => {
         const reader = new FileReader();
@@ -160,6 +190,7 @@ function updateSettings(self) {
     setSetting('nameColor', self.querySelector('#nameColor').value);
     return false;
 }
+
 function HtmlEncode(s) {
     var el = document.createElement("div");
     el.innerText = el.textContent = s;
