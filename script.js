@@ -16,7 +16,7 @@ for (let setting of Array.from(document.querySelectorAll(".setting"))) {
     setting.value = Settings[setting.id];
     setting.addEventListener('change', () => {
         setSetting(setting.id, setting.value);
-        setting.value = Settings[setting.id];
+        for (let setting of Array.from(document.querySelectorAll(".setting"))) setting.value = Settings[setting.id];
     })
 }
 
