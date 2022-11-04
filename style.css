@@ -325,6 +325,7 @@ input[type="file"] {
       z-index: 5;
       padding: 5px;
       justify-content: center;
+      font-size: 0.85rem;
   }
   .topbar > input {
       margin-inline: 20px;
