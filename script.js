@@ -31,8 +31,8 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var myName = Settings.name;
-var messagesRef = firebase.database().ref("messages").limitToLast(100).orderByChild('timestamp');
 var messagesRefUnlimited = firebase.database().ref("messages");
+var messagesRef = messagesRefUnlimited.limitToLast(100).orderByChild('timestamp');
 var images = [];
 function sendMessage() {
     try {
